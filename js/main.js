@@ -1,59 +1,104 @@
-/* Project Data */
-const projects = [
-    {
-        name: "XoE (X over Ethernet)",
-        language: "ANSI-C (C89)",
-        description: "Extensible framework for encapsulation of various protocols into Ethernet-transmissible data. Built as a testbed for human-LLM hybrid development with labeled contributions.",
-        tags: ["C89", "Networking", "Cross-Platform"],
-        github: "https://github.com/hcobbs/xoe",
-        contributions: {
-            "CLASSIC": 1,
-            "CLASSIC-REVIEW": 0,
-            "LLM-ASSISTED": 14,
-            "LLM-ARCH": 23,
-            "LLM-REVIEW": 2,
-            "VIBE": 0
-        },
-        features: [
-            "Network server implementation with cross-platform support",
-            "Packet management and protocol definitions",
-            "Automatic OS detection and library linking",
-            "Strict C89 compliance with full pedantic warnings"
-        ]
+/* Projects Page - Sidebar Navigation with Full Details */
+
+const GITHUB_API = 'https://api.github.com';
+let activeProjectId = null;
+
+/* Initialize on page load */
+document.addEventListener('DOMContentLoaded', () => {
+    const tabsContainer = document.getElementById('projectTabs');
+    if (!tabsContainer) return;
+
+    renderProjectTabs();
+
+    /* Load first project by default, or from URL hash */
+    const hashId = window.location.hash.slice(1);
+    const initialProject = hashId && getProjectById(hashId)
+        ? hashId
+        : projects[0]?.id;
+
+    if (initialProject) {
+        selectProject(initialProject);
     }
-    /* Add more projects here in the future */
-];
+});
 
-/* Render Projects */
-function renderProjects() {
-    const grid = document.getElementById('projectsGrid');
+/* Render sidebar tabs */
+function renderProjectTabs() {
+    const container = document.getElementById('projectTabs');
+    if (!container) return;
 
-    projects.forEach(project => {
-        const card = createProjectCard(project);
-        grid.appendChild(card);
+    container.innerHTML = projects.map(project => `
+        <button class="project-tab" data-id="${project.id}">
+            <span class="tab-name">${project.name}</span>
+            <span class="tab-lang">${project.language}</span>
+        </button>
+    `).join('');
+
+    /* Add click handlers */
+    container.querySelectorAll('.project-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            selectProject(tab.dataset.id);
+        });
     });
 }
 
-function createProjectCard(project) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
+/* Select and load a project */
+function selectProject(projectId) {
+    const project = getProjectById(projectId);
+    if (!project) return;
 
-    /* Calculate total commits for percentage */
-    const totalCommits = Object.values(project.contributions)
+    activeProjectId = projectId;
+
+    /* Update URL hash */
+    window.location.hash = projectId;
+
+    /* Update active tab */
+    document.querySelectorAll('.project-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.id === projectId);
+    });
+
+    /* Render static content */
+    renderProjectHeader(project);
+    renderContributionStats(project);
+
+    /* Fetch GitHub data */
+    fetchAndRenderReadme(project.repo);
+    fetchAndRenderCommits(project.repo);
+    fetchAndRenderIssues(project.repo);
+}
+
+/* Render project header */
+function renderProjectHeader(project) {
+    document.getElementById('projectTitle').textContent = project.name;
+    document.getElementById('projectDescription').textContent = project.description;
+
+    document.getElementById('projectTags').innerHTML = project.tags
+        .map(tag => `<span class="project-tag">${tag}</span>`)
+        .join('');
+
+    document.getElementById('projectLinks').innerHTML = `
+        <a href="${project.github}" class="project-link" target="_blank">
+            View on GitHub
+        </a>
+    `;
+}
+
+/* Render contribution stats */
+function renderContributionStats(project) {
+    const container = document.getElementById('contributionStats');
+    const total = Object.values(project.contributions)
         .reduce((sum, val) => sum + val, 0);
 
-    /* Build contribution stats HTML */
-    let statsHTML = '';
+    let html = `<p class="stats-total">${total} commits</p>`;
+
     for (const [label, count] of Object.entries(project.contributions)) {
         if (count > 0) {
-            const percentage = ((count / totalCommits) * 100).toFixed(1);
-            const labelClass = label.toLowerCase().replace(/-/g, '-');
-            statsHTML += `
+            const pct = ((count / total) * 100).toFixed(1);
+            const cls = label.toLowerCase().replace(/-/g, '-');
+            html += `
                 <div class="stat-bar">
                     <span class="stat-label">[${label}]</span>
                     <div class="stat-visual">
-                        <div class="stat-fill ${labelClass}"
-                             style="width: ${percentage}%"></div>
+                        <div class="stat-fill ${cls}" style="width: ${pct}%"></div>
                     </div>
                     <span class="stat-value">${count}</span>
                 </div>
@@ -61,72 +106,147 @@ function createProjectCard(project) {
         }
     }
 
-    /* Build tags HTML */
-    const tagsHTML = project.tags
-        .map(tag => `<span class="project-tag">${tag}</span>`)
-        .join('');
-
-    /* Build features HTML if available */
-    let featuresHTML = '';
-    if (project.features && project.features.length > 0) {
-        featuresHTML = `
-            <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--text-light);">
-                ${project.features.map(f => `<li style="margin-bottom: 0.5rem;">${f}</li>`).join('')}
-            </ul>
-        `;
-    }
-
-    card.innerHTML = `
-        <h3>${project.name}</h3>
-        <div class="project-meta">
-            ${tagsHTML}
-        </div>
-        <p class="project-description">${project.description}</p>
-        ${featuresHTML}
-        <div class="project-stats">
-            <h4>Contribution Breakdown (${totalCommits} commits)</h4>
-            <div class="stats-bars">
-                ${statsHTML}
-            </div>
-        </div>
-        <div class="project-links">
-            <a href="${project.github}" class="project-link" target="_blank">View on GitHub</a>
-        </div>
-    `;
-
-    return card;
+    container.innerHTML = html;
 }
 
-/* Initialize on page load */
-document.addEventListener('DOMContentLoaded', () => {
-    renderProjects();
+/* Fetch and render README */
+async function fetchAndRenderReadme(repo) {
+    const container = document.getElementById('readmeContent');
+    container.innerHTML = '<p class="loading-text">Fetching README...</p>';
 
-    /* Animate stat bars on scroll into view */
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
+    try {
+        const res = await fetch(`${GITHUB_API}/repos/${repo}/readme`, {
+            headers: { 'Accept': 'application/vnd.github.v3.raw' }
+        });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const fills = entry.target.querySelectorAll('.stat-fill');
-                fills.forEach(fill => {
-                    const width = fill.style.width;
-                    fill.style.width = '0%';
-                    setTimeout(() => {
-                        fill.style.width = width;
-                    }, 100);
-                });
-                observer.unobserve(entry.target);
+        if (!res.ok) throw new Error('README not found');
+
+        const markdown = await res.text();
+        container.innerHTML = marked.parse(markdown);
+
+        /* Add GitHub-style IDs to headings for TOC links */
+        container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(heading => {
+            const slug = heading.textContent
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .trim();
+            heading.id = slug;
+        });
+
+        /* Fix relative links to point to GitHub */
+        const ghBlob = `https://github.com/${repo}/blob/main`;
+        const ghRaw = `https://raw.githubusercontent.com/${repo}/main`;
+
+        container.querySelectorAll('a').forEach(a => {
+            const href = a.getAttribute('href');
+            if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                a.href = `${ghBlob}/${href.replace(/^\.\//, '')}`;
+                a.target = '_blank';
             }
         });
-    }, observerOptions);
 
-    /* Observe all project cards */
-    setTimeout(() => {
-        document.querySelectorAll('.project-card').forEach(card => {
-            observer.observe(card);
+        container.querySelectorAll('img').forEach(img => {
+            const src = img.getAttribute('src');
+            if (src && !src.startsWith('http')) {
+                img.src = `${ghRaw}/${src.replace(/^\.\//, '')}`;
+            }
         });
-    }, 100);
-});
+    } catch (err) {
+        container.innerHTML = '<p class="error-text">Could not load README</p>';
+    }
+}
+
+/* Fetch and render commits */
+async function fetchAndRenderCommits(repo) {
+    const container = document.getElementById('recentCommits');
+    container.innerHTML = '<p class="loading-text">Fetching commits...</p>';
+
+    try {
+        const res = await fetch(`${GITHUB_API}/repos/${repo}/commits?per_page=10`);
+        if (!res.ok) throw new Error('Failed to fetch commits');
+
+        const commits = await res.json();
+
+        if (commits.length === 0) {
+            container.innerHTML = '<p class="empty-text">No commits yet</p>';
+            return;
+        }
+
+        container.innerHTML = commits.map(commit => {
+            const msg = commit.commit.message.split('\n')[0];
+            const date = new Date(commit.commit.author.date);
+            const dateStr = date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric'
+            });
+
+            const labelMatch = msg.match(/^\[([A-Z-]+)\]/);
+            const label = labelMatch ? labelMatch[1] : null;
+            const cleanMsg = msg.replace(/^\[[A-Z-]+\]\s*/, '');
+
+            return `
+                <div class="commit-item">
+                    <div class="commit-meta">
+                        <span class="commit-date">${dateStr}</span>
+                        ${label ? `<span class="commit-label">[${label}]</span>` : ''}
+                    </div>
+                    <p class="commit-message">${escapeHtml(cleanMsg)}</p>
+                    <a href="${commit.html_url}" class="commit-link" target="_blank">
+                        ${commit.sha.substring(0, 7)}
+                    </a>
+                </div>
+            `;
+        }).join('');
+    } catch (err) {
+        container.innerHTML = '<p class="error-text">Could not load commits</p>';
+    }
+}
+
+/* Fetch and render issues/PRs */
+async function fetchAndRenderIssues(repo) {
+    const container = document.getElementById('issuesList');
+    container.innerHTML = '<p class="loading-text">Fetching issues...</p>';
+
+    try {
+        const res = await fetch(
+            `${GITHUB_API}/repos/${repo}/issues?state=all&per_page=10&sort=updated`
+        );
+        if (!res.ok) throw new Error('Failed to fetch issues');
+
+        const issues = await res.json();
+
+        if (issues.length === 0) {
+            container.innerHTML = '<p class="empty-text">No issues or PRs</p>';
+            return;
+        }
+
+        container.innerHTML = issues.map(issue => {
+            const isPR = !!issue.pull_request;
+            const icon = isPR ? 'PR' : '#';
+            const stateClass = issue.state === 'open' ? 'state-open' : 'state-closed';
+
+            return `
+                <div class="issue-item">
+                    <span class="issue-icon ${stateClass}">${icon}</span>
+                    <div class="issue-content">
+                        <a href="${issue.html_url}" class="issue-title" target="_blank">
+                            ${escapeHtml(issue.title)}
+                        </a>
+                        <span class="issue-number">#${issue.number}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    } catch (err) {
+        container.innerHTML = '<p class="error-text">Could not load issues</p>';
+    }
+}
+
+/* Escape HTML */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
