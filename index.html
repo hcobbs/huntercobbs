@@ -3,35 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hunter Cobbs - AI-Augmented Software Engineering Portfolio">
-    <title>Hunter Cobbs | AI-Augmented Development</title>
+    <meta name="description" content="Hunter Cobbs - Senior Solutions Architect, Patent Holder, Embedded Systems Veteran">
+    <title>Hunter Cobbs | Solutions Architect & AI-Augmented Development</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav class="nav-bar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">HCOBBS</a>
+            <a href="index.html" class="nav-logo"><img src="photos/hc.jpg" alt="HC"></a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html">About</a></li>
                 <li><a href="methodology.html">Methodology</a></li>
             </ul>
         </div>
     </nav>
 
     <main>
-        <section class="hero">
+        <section class="intro">
             <div class="container">
-                <h1 class="hero-title">HUNTER COBBS</h1>
-                <p class="hero-subtitle">AI-Augmented Software Engineering</p>
-                <p class="hero-description">
-                    Exploring the intersection of human expertise and artificial intelligence
-                    in software development. Building transparent, labeled projects that showcase
-                    the evolution of hybrid human-LLM collaboration.
-                </p>
-                <a href="projects.html" class="cta-button">View Projects</a>
+                <div class="intro-bio">
+                    <div class="intro-image">
+                        <img src="photos/cartoon_cobbs.jpg" alt="Hunter Cobbs - Artist's Generous Interpretation">
+                    </div>
+                    <div class="intro-header">
+                        <h1 class="intro-title">HUNTER COBBS</h1>
+                        <p class="intro-subtitle">Senior Solutions Architect @ Forescout Technologies</p>
+                        <p class="intro-location">Kansas City, Missouri</p>
+                    </div>
+                </div>
+                <div class="intro-content">
+                    <p>
+                        Yes, that's a cartoon. No, I don't actually look that put-together before my third cup of coffee.
+                    </p>
+                    <p>
+                        Twenty-plus years in the industry, and I've spent most of it convincing computers to do
+                        things they really didn't want to do. Started in embedded systems and firmware development,
+                        writing code for devices with less memory than this webpage consumes. Somewhere along the
+                        way I picked up two U.S. patents for teaching hardware to recover from its own mistakes. Turns
+                        out, that's a patentable innovation.
+                    </p>
+                </div>
             </div>
+        </section>
+
+        <section class="bio-section container">
+            <h2>Professional History</h2>
+
+            <div class="career-timeline">
+                <div class="career-block">
+                    <h3>The Cybersecurity Years (2016–Present)</h3>
+                    <p>
+                        At Forescout, I architect solutions for the fundamental problem everyone ignores until
+                        it's too late: figuring out what's actually connected to your network. I design and deploy
+                        systems that discover every device, classify what it is, determine if it belongs there,
+                        and remove it if it doesn't. Most organizations are surprised by what's actually on their
+                        networks. A lot of it has no business being there.
+                    </p>
+                    <p>
+                        Before that, I did stints at Haystax (insider threat detection via machine learning, monitoring
+                        2+ million individuals for anomalous behavior), Arxan Technologies (application shielding and
+                        mobile security), and CyberMDX (medical device security, because apparently CT scanners running
+                        Windows XP is a thing we tolerate). I've presented at HIMSS on threat detection in unmanaged
+                        medical devices, and at GITEX Global on network access control. Partner enablement, channel
+                        training, strategic account management. Conference booth veteran. I've worn the polo, worked
+                        the badge scanner, and smiled through more "what does your company do" conversations than
+                        any human should endure. Still, there's nothing quite like watching a prospect realize you
+                        just saved them six months of pain.
+                    </p>
+                </div>
+
+                <div class="career-block">
+                    <h3>The Infrastructure Years (2011–2016)</h3>
+                    <p>
+                        At Broadcom, I was the sole software support resource for the Central US and Brazil.
+                        Thirteen accounts, $300 million in recurring revenue, one phone number. XGS/Robo SDK
+                        support, executive relationships, and first point of contact when everything caught fire.
+                    </p>
+                    <p>
+                        Before that, Dell. Enterprise networking OS development. BSPs for campus switches, board
+                        architecture input, FPGA specs. Built the Linux prototyping environment because waiting
+                        for official toolchains is how projects die.
+                    </p>
+                </div>
+
+                <div class="career-block">
+                    <h3>The Embedded Years (2004–2011)</h3>
+                    <p>
+                        This is where I cut my teeth. At SmartSynch, I developed firmware for cellular-enabled Smart
+                        Meter devices on ARM7/ARM9 processors with Nucleus RTOS. Built custom Linux BSPs, maintained
+                        the source code repository for all active development, and created the disaster recovery
+                        procedure that could restore units to factory defaults in the field without human interaction.
+                        That last one became a patent.
+                    </p>
+                    <p>
+                        At Control4, I worked on home automation systems targeting the $500K–$1M home market.
+                        Designed and implemented SIP-based video intercom endpoints, integrated board support
+                        packages into build systems supporting dozens of cross-compilers and target devices.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio-section container">
+            <h2>Patents</h2>
+            <p class="section-intro">
+                I hold two U.S. patents, which sounds impressive until you realize they're about making
+                embedded devices fail gracefully. Teaching hardware to recover from its own mistakes. Who knew
+                that needed to be invented.
+            </p>
+            <div class="patent-list">
+                <div class="patent-item">
+                    <span class="patent-number">US 8381021</span>
+                    <span class="patent-title">System and method for automated unattended recovery for remotely deployed intelligent communication devices</span>
+                    <p class="patent-desc">Boot failure detection and image restoration. Because devices will find creative ways to brick themselves, and someone has to plan for that.</p>
+                </div>
+                <div class="patent-item">
+                    <span class="patent-number">US 8694824</span>
+                    <span class="patent-title">System and method for upgradeable remotely deployed intelligent communication devices</span>
+                    <p class="patent-desc">Network connection monitoring and recovery. Networks are unreliable. This patent is about accepting that reality and dealing with it like adults.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio-section container">
+            <h2>Technical Foundation</h2>
+            <div class="skills-grid">
+                <div class="skill-block">
+                    <h3>Languages</h3>
+                    <p>ANSI C, Python, Bash, JavaScript, Java, Assembly</p>
+                </div>
+                <div class="skill-block">
+                    <h3>Systems</h3>
+                    <p>Linux kernel development, root filesystems, bootloaders, embedded RTOS (Nucleus)</p>
+                </div>
+                <div class="skill-block">
+                    <h3>Infrastructure</h3>
+                    <p>Docker, MongoDB, cloud deployments, source control, release planning</p>
+                </div>
+                <div class="skill-block">
+                    <h3>Domains</h3>
+                    <p>Cybersecurity, network access control, medical device security, embedded systems</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio-section container">
+            <h2>Current Obsession</h2>
+            <div class="bio-content">
+                <p>
+                    These days, I'm exploring how AI can augment software development without producing
+                    the kind of code that makes future maintainers question your life choices. Hence this
+                    portfolio, where every commit is labeled so you can see exactly who (or what) is
+                    responsible for each brilliant decision and inevitable bug.
+                </p>
+                <p>
+                    The verdict so far: AI is a surprisingly capable pair programmer, provided you actually
+                    pay attention. If you don't, you'll get code that technically works but spiritually
+                    shouldn't exist.
+                </p>
+            </div>
+        </section>
+
+        <section class="bio-section container">
+            <h2>Education</h2>
+            <p>Mississippi State University, BS Computer Engineering, 2003. Go Bulldogs, etc.</p>
         </section>
     </main>
 
