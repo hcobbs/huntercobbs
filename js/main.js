@@ -3,6 +3,14 @@
 const GITHUB_API = 'https://api.github.com';
 let activeProjectId = null;
 
+/* Configure marked for security */
+if (typeof marked !== 'undefined') {
+    marked.setOptions({
+        headerIds: false,
+        mangle: false
+    });
+}
+
 /* Initialize on page load */
 document.addEventListener('DOMContentLoaded', () => {
     const tabsContainer = document.getElementById('projectTabs');
@@ -76,7 +84,7 @@ function renderProjectHeader(project) {
         .join('');
 
     document.getElementById('projectLinks').innerHTML = `
-        <a href="${project.github}" class="project-link" target="_blank">
+        <a href="${project.github}" class="project-link" target="_blank" rel="noopener noreferrer">
             View on GitHub
         </a>
     `;
@@ -122,7 +130,7 @@ async function fetchAndRenderReadme(repo) {
         if (!res.ok) throw new Error('README not found');
 
         const markdown = await res.text();
-        container.innerHTML = marked.parse(markdown);
+        container.innerHTML = sanitizeHtml(marked.parse(markdown));
 
         /* Add GitHub-style IDs to headings for TOC links */
         container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(heading => {
@@ -144,6 +152,10 @@ async function fetchAndRenderReadme(repo) {
             if (href && !href.startsWith('http') && !href.startsWith('#')) {
                 a.href = `${ghBlob}/${href.replace(/^\.\//, '')}`;
                 a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+            } else if (href && href.startsWith('http')) {
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
             }
         });
 
@@ -193,7 +205,7 @@ async function fetchAndRenderCommits(repo) {
                         ${label ? `<span class="commit-label">[${label}]</span>` : ''}
                     </div>
                     <p class="commit-message">${escapeHtml(cleanMsg)}</p>
-                    <a href="${commit.html_url}" class="commit-link" target="_blank">
+                    <a href="${commit.html_url}" class="commit-link" target="_blank" rel="noopener noreferrer">
                         ${commit.sha.substring(0, 7)}
                     </a>
                 </div>
@@ -231,7 +243,7 @@ async function fetchAndRenderIssues(repo) {
                 <div class="issue-item">
                     <span class="issue-icon ${stateClass}">${icon}</span>
                     <div class="issue-content">
-                        <a href="${issue.html_url}" class="issue-title" target="_blank">
+                        <a href="${issue.html_url}" class="issue-title" target="_blank" rel="noopener noreferrer">
                             ${escapeHtml(issue.title)}
                         </a>
                         <span class="issue-number">#${issue.number}</span>
@@ -248,5 +260,30 @@ async function fetchAndRenderIssues(repo) {
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
+    return div.innerHTML;
+}
+
+/* Sanitize HTML - remove dangerous elements and attributes */
+function sanitizeHtml(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+
+    /* Remove script tags */
+    div.querySelectorAll('script').forEach(el => el.remove());
+
+    /* Remove event handlers and javascript: URLs */
+    div.querySelectorAll('*').forEach(el => {
+        Array.from(el.attributes).forEach(attr => {
+            if (attr.name.startsWith('on') ||
+                (attr.name === 'href' && attr.value.toLowerCase().startsWith('javascript:')) ||
+                (attr.name === 'src' && attr.value.toLowerCase().startsWith('javascript:'))) {
+                el.removeAttribute(attr.name);
+            }
+        });
+    });
+
+    /* Remove iframes, objects, embeds */
+    div.querySelectorAll('iframe, object, embed, form').forEach(el => el.remove());
+
     return div.innerHTML;
 }
