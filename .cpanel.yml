@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/YOUR_CPANEL_USERNAME/public_html
+    - export DEPLOYPATH=/home/hunter14/public_html
     - /bin/cp -R index.html $DEPLOYPATH/
     - /bin/cp -R methodology.html $DEPLOYPATH/
     - /bin/cp -R projects.html $DEPLOYPATH/
