@@ -6,4 +6,5 @@ deployment:
     - /bin/cp -R methodology.html $DEPLOYPATH/
     - /bin/cp -R projects.html $DEPLOYPATH/
     - /bin/cp -R css $DEPLOYPATH/
+    - /bin/cp -R js $DEPLOYPATH/
     - /bin/cp -R photos $DEPLOYPATH/
