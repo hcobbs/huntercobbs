@@ -22,8 +22,30 @@ const projects = [
             "Automatic OS detection and library linking",
             "Strict C89 compliance with full pedantic warnings"
         ]
+    },
+    {
+        id: "huntercobbs",
+        name: "huntercobbs.com",
+        language: "HTML/CSS/JS",
+        description: "Personal portfolio website showcasing AI-augmented development methodology. Built with vanilla web technologies and Claude Code.",
+        tags: ["Web", "Portfolio", "AI-Augmented"],
+        github: "https://github.com/hcobbs/huntercobbs",
+        repo: "hcobbs/huntercobbs",
+        contributions: {
+            "CLASSIC": 0,
+            "CLASSIC-REVIEW": 0,
+            "LLM-ASSISTED": 0,
+            "LLM-ARCH": 1,
+            "LLM-REVIEW": 2,
+            "VIBE": 9
+        },
+        features: [
+            "Left sidebar navigation with responsive mobile layout",
+            "Dynamic GitHub integration for project READMEs and commits",
+            "Security hardened with SRI, CSP headers, and XSS sanitization",
+            "Developed entirely with Claude Code assistance"
+        ]
     }
-    /* Add more projects here */
 ];
 
 /* Get project by ID */
