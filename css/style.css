@@ -404,12 +404,49 @@ h2 {
     line-height: 1.6;
 }
 
-/* Bio Content */
+/* Bio Page */
+.bio-header {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+}
+
+.bio-image {
+    flex-shrink: 0;
+}
+
+.bio-image img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+}
+
+.bio-intro h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-xs);
+}
+
+.bio-title {
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.bio-location {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
 .bio-content {
     background: var(--bg-card);
     border-left: 3px solid var(--primary);
     padding: var(--spacing-md);
     line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
 }
 
 .bio-content p {
@@ -420,6 +457,61 @@ h2 {
 
 .bio-content p:last-child {
     margin-bottom: 0;
+}
+
+.bio-section-block {
+    margin-bottom: var(--spacing-lg);
+}
+
+.bio-section-block h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bio-section-block p {
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-sm);
+}
+
+.patent-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.patent-item {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-hover);
+    padding: var(--spacing-md);
+}
+
+.patent-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--secondary);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.patent-title {
+    font-size: 0.95rem;
+    color: var(--text-bright);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+.patent-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
 }
 
 /* Footer */
@@ -813,5 +905,16 @@ h2 {
 
     .project-content {
         padding: var(--spacing-md);
+    }
+
+    .bio-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bio-image img {
+        width: 150px;
+        height: 150px;
     }
 }
