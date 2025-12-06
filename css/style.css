@@ -101,35 +101,72 @@ body {
     color: var(--primary);
 }
 
-/* Hero Section */
-.hero {
-    text-align: center;
+/* Intro Section */
+.intro {
     padding: var(--spacing-xl) 0;
     border-bottom: 1px solid var(--bg-card);
 }
 
-.hero-title {
+.intro-bio {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+}
+
+.intro-image {
+    flex-shrink: 0;
+}
+
+.intro-image img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+}
+
+.intro-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.intro-title {
     font-family: 'Space Mono', monospace;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-bright);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     letter-spacing: 2px;
 }
 
-.hero-subtitle {
-    font-size: 1.25rem;
+.intro-subtitle {
+    font-size: 1.1rem;
     color: var(--primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 0.25rem;
     font-weight: 400;
 }
 
-.hero-description {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto var(--spacing-lg);
+.intro-location {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.intro-content {
+    background: var(--bg-card);
+    border-left: 3px solid var(--primary);
+    padding: var(--spacing-md);
     line-height: 1.8;
+}
+
+.intro-content p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-dim);
+    font-size: 1rem;
+}
+
+.intro-content p:last-child {
+    margin-bottom: 0;
 }
 
 .cta-button {
@@ -476,6 +513,73 @@ h2 {
     color: var(--text-dim);
     line-height: 1.7;
     margin-bottom: var(--spacing-sm);
+}
+
+/* Section Intro */
+.section-intro {
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Career Timeline */
+.career-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.career-block {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-hover);
+    padding: var(--spacing-md);
+    border-left: 3px solid var(--secondary);
+}
+
+.career-block h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.5px;
+}
+
+.career-block p {
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-sm);
+}
+
+.career-block p:last-child {
+    margin-bottom: 0;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.skill-block {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-hover);
+    padding: var(--spacing-md);
+}
+
+.skill-block h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.skill-block p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .patent-list {
@@ -830,12 +934,23 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
+    .intro-title {
+        font-size: 1.75rem;
     }
 
-    .hero-subtitle {
+    .intro-subtitle {
         font-size: 1rem;
+    }
+
+    .intro-bio {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .intro-image img {
+        width: 150px;
+        height: 150px;
     }
 
     h2 {
@@ -843,6 +958,10 @@ h2 {
     }
 
     .labels-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
         grid-template-columns: 1fr;
     }
 
