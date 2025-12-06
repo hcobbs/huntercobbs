@@ -1,24 +1,38 @@
 # Hunter Cobbs - AI-Augmented Development Portfolio
 
-Static website showcasing projects built using hybrid human-LLM development methodology with transparent contribution tracking.
+Cyberpunk-themed static website showcasing projects built using hybrid human-LLM development methodology with transparent contribution tracking.
 
 ## Tech Stack
 
 - Plain HTML/CSS/JavaScript (no build system)
+- Cyberpunk dark theme with neon aesthetics
 - Vanilla JS for dynamic content rendering
+- Multi-page architecture
 - GitHub Pages ready
 
 ## Project Structure
 
 ```
 .
-├── index.html          # Main portfolio page
+├── index.html          # Landing page with hero section
+├── projects.html       # Projects showcase with contribution breakdowns
+├── about.html          # About/bio section
+├── methodology.html    # Contribution labels explanation
 ├── css/
-│   └── style.css      # Styling and responsive design
+│   └── style.css      # Cyberpunk theme and responsive design
 ├── js/
 │   └── main.js        # Project data and rendering logic
 └── README.md          # This file
 ```
+
+## Design Features
+
+- **Cyberpunk Dark Theme**: Neon cyan/magenta color scheme with glowing effects
+- **Scanline Effect**: Subtle CRT monitor aesthetic overlay
+- **Geometric Shapes**: Angled clip-path cards for cyberpunk feel
+- **Neon Glows**: Text shadows and box shadows for neon effect
+- **Tech Fonts**: Share Tech Mono and Rajdhani for futuristic look
+- **Animated Bars**: Contribution breakdown with glowing gradient fills
 
 ## Adding New Projects
 
