@@ -30,9 +30,3 @@ const projects = [
 function getProjectById(id) {
     return projects.find(p => p.id === id);
 }
-
-/* Get project ID from URL */
-function getProjectIdFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id');
-}

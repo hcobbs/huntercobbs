@@ -477,41 +477,11 @@ h3 {
     line-height: 1.6;
 }
 
-/* Bio Page */
-.bio-header {
-    display: flex;
-    gap: var(--spacing-lg);
-    align-items: flex-start;
+.methodology-intro {
+    color: var(--text-dim);
     margin-bottom: var(--spacing-lg);
-}
-
-.bio-image {
-    flex-shrink: 0;
-}
-
-.bio-image img {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border: 3px solid var(--primary);
-}
-
-.bio-intro h3 {
-    font-family: 'Fira Code', monospace;
-    font-size: 1.5rem;
-    color: var(--text-bright);
-    margin-bottom: var(--spacing-xs);
-}
-
-.bio-title {
-    color: var(--primary);
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-}
-
-.bio-location {
-    color: var(--text-muted);
-    font-size: 0.875rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
 .bio-content {
@@ -530,25 +500,6 @@ h3 {
 
 .bio-content p:last-child {
     margin-bottom: 0;
-}
-
-.bio-section-block {
-    margin-bottom: var(--spacing-lg);
-}
-
-.bio-section-block h3 {
-    font-family: 'Fira Code', monospace;
-    font-size: 1rem;
-    color: var(--primary);
-    margin-bottom: var(--spacing-sm);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.bio-section-block p {
-    color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-sm);
 }
 
 /* Section Intro */
