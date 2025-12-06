@@ -1,5 +1,5 @@
 /* Mid-Century Modern + Cyberpunk Fusion */
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
 * {
     margin: 0;
@@ -30,12 +30,12 @@
     --glow-primary: 0 0 20px rgba(212, 168, 83, 0.15);
     --border-subtle: rgba(212, 168, 83, 0.3);
 
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 3rem;
-    --spacing-xl: 4rem;
+    /* Spacing - tightened for compact layout */
+    --spacing-xs: 0.375rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1.25rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
 }
 
 body {
@@ -44,6 +44,7 @@ body {
     color: var(--text-bright);
     background: var(--bg-dark);
     min-height: 100vh;
+    margin-left: 200px;
 }
 
 .container {
@@ -52,37 +53,52 @@ body {
     padding: 0 var(--spacing-md);
 }
 
-/* Navigation */
+/* Navigation - Left Sidebar */
 .nav-bar {
     background: var(--bg-darker);
-    border-bottom: 1px solid var(--border-subtle);
-    position: sticky;
+    border-right: 1px solid var(--border-subtle);
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-sm);
+    height: 100%;
 }
 
 .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--primary);
-    text-decoration: none;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.nav-logo img {
+    height: 80px;
+    width: auto;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+}
+
+.nav-logo:hover img {
+    border-color: var(--text-bright);
 }
 
 .nav-links {
     display: flex;
-    gap: var(--spacing-md);
+    flex-direction: column;
+    gap: var(--spacing-xs);
     list-style: none;
+    width: 100%;
 }
 
 .nav-links a {
@@ -91,27 +107,35 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 0.5rem 1rem;
-    transition: color 0.2s ease;
-    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    display: block;
+    border-left: 3px solid transparent;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+    color: var(--primary);
+    background: var(--bg-card);
+    border-left-color: var(--text-muted);
+}
+
 .nav-links a.active {
     color: var(--primary);
+    background: var(--bg-card);
+    border-left-color: var(--primary);
 }
 
 /* Intro Section */
 .intro {
-    padding: var(--spacing-xl) 0;
-    border-bottom: 1px solid var(--bg-card);
+    padding: var(--spacing-lg) 0 var(--spacing-md);
 }
 
 .intro-bio {
     display: flex;
-    gap: var(--spacing-lg);
-    align-items: flex-start;
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+    align-items: center;
+    margin-bottom: var(--spacing-md);
 }
 
 .intro-image {
@@ -119,10 +143,10 @@ body {
 }
 
 .intro-image img {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
-    border: 3px solid var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .intro-header {
@@ -132,35 +156,35 @@ body {
 }
 
 .intro-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 2.5rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--text-bright);
-    margin-bottom: var(--spacing-xs);
-    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+    letter-spacing: 1px;
 }
 
 .intro-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.125rem;
     font-weight: 400;
 }
 
 .intro-location {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
 .intro-content {
     background: var(--bg-card);
     border-left: 3px solid var(--primary);
-    padding: var(--spacing-md);
-    line-height: 1.8;
+    padding: var(--spacing-sm) var(--spacing-md);
+    line-height: 1.7;
 }
 
 .intro-content p {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     color: var(--text-dim);
     font-size: 1rem;
 }
@@ -171,7 +195,7 @@ body {
 
 .cta-button {
     display: inline-block;
-    padding: 0.875rem 2rem;
+    padding: 0.625rem 1.5rem;
     background: var(--primary);
     border: none;
     color: var(--bg-dark);
@@ -179,30 +203,42 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 0.875rem;
-    transition: background 0.2s ease, transform 0.2s ease;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+    margin-top: var(--spacing-sm);
 }
 
 .cta-button:hover {
     background: var(--text-bright);
-    transform: translateY(-2px);
 }
 
 /* Section Headers */
 section {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+section.bio-section {
+    padding-top: var(--spacing-sm);
 }
 
 h2 {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.5rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
     color: var(--primary);
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
     border-bottom: 1px solid var(--border-subtle);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 700;
+}
+
+h3 {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
 }
 
 /* Projects Layout - Sidebar + Content */
@@ -223,7 +259,7 @@ h2 {
 }
 
 .projects-sidebar h2 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -266,7 +302,7 @@ h2 {
 }
 
 .tab-name {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.875rem;
     color: var(--text-bright);
     font-weight: 600;
@@ -299,7 +335,7 @@ h2 {
     padding: 0.25rem 0.625rem;
     font-size: 0.75rem;
     color: var(--primary);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -338,7 +374,7 @@ h2 {
 .stat-label {
     min-width: 90px;
     font-size: 0.6rem;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     color: var(--text-muted);
 }
 
@@ -360,7 +396,7 @@ h2 {
     font-size: 0.6rem;
     font-weight: 600;
     color: var(--text-dim);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 /* Mid-century contribution label colors */
@@ -428,7 +464,7 @@ h2 {
 }
 
 .label-card h3 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     color: var(--primary);
     margin-bottom: var(--spacing-xs);
     font-size: 0.875rem;
@@ -461,7 +497,7 @@ h2 {
 }
 
 .bio-intro h3 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1.5rem;
     color: var(--text-bright);
     margin-bottom: var(--spacing-xs);
@@ -481,13 +517,13 @@ h2 {
 .bio-content {
     background: var(--bg-card);
     border-left: 3px solid var(--primary);
-    padding: var(--spacing-md);
-    line-height: 1.8;
-    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
 }
 
 .bio-content p {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     color: var(--text-dim);
     font-size: 1rem;
 }
@@ -501,7 +537,7 @@ h2 {
 }
 
 .bio-section-block h3 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: var(--primary);
     margin-bottom: var(--spacing-sm);
@@ -518,36 +554,38 @@ h2 {
 /* Section Intro */
 .section-intro {
     color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1rem;
 }
 
 /* Career Timeline */
 .career-timeline {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-sm);
 }
 
 .career-block {
     background: var(--bg-card);
     border: 1px solid var(--bg-card-hover);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     border-left: 3px solid var(--secondary);
 }
 
 .career-block h3 {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    color: var(--primary);
-    margin-bottom: var(--spacing-sm);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-xs);
     letter-spacing: 0.5px;
 }
 
 .career-block p {
     color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xs);
+    font-size: 1rem;
 }
 
 .career-block p:last-child {
@@ -557,21 +595,21 @@ h2 {
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
 }
 
 .skill-block {
     background: var(--bg-card);
     border: 1px solid var(--bg-card-hover);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
 }
 
 .skill-block h3 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
     color: var(--primary);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -585,34 +623,33 @@ h2 {
 .patent-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .patent-item {
     background: var(--bg-card);
     border: 1px solid var(--bg-card-hover);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
 }
 
 .patent-number {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
     color: var(--secondary);
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.125rem;
 }
 
 .patent-title {
     font-size: 0.95rem;
     color: var(--text-bright);
     display: block;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 0.25rem;
     line-height: 1.4;
 }
 
 .patent-desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
     margin: 0;
     line-height: 1.5;
@@ -624,13 +661,13 @@ h2 {
     border-top: 1px solid var(--bg-card);
     color: var(--text-muted);
     text-align: center;
-    padding: var(--spacing-md) 0;
-    margin-top: var(--spacing-xl);
+    padding: var(--spacing-sm) 0;
+    margin-top: var(--spacing-lg);
 }
 
 .site-footer p {
-    font-size: 0.8rem;
-    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-family: 'Fira Code', monospace;
 }
 
 /* Project Detail Page */
@@ -653,7 +690,7 @@ h2 {
 }
 
 .project-header h1 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 2rem;
     color: var(--text-bright);
     margin-bottom: var(--spacing-xs);
@@ -694,7 +731,7 @@ h2 {
 .readme-body h2,
 .readme-body h3,
 .readme-body h4 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     color: var(--text-bright);
     margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-sm);
@@ -710,7 +747,7 @@ h2 {
 }
 
 .readme-body code {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     background: var(--bg-darker);
     padding: 0.125rem 0.375rem;
     font-size: 0.875rem;
@@ -772,7 +809,7 @@ h2 {
 }
 
 .sidebar-section h3 {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.65rem;
     color: var(--primary);
     text-transform: uppercase;
@@ -816,13 +853,13 @@ h2 {
 .commit-date {
     font-size: 0.6rem;
     color: var(--text-muted);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 .commit-label {
     font-size: 0.55rem;
     color: var(--secondary);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 .commit-message {
@@ -838,7 +875,7 @@ h2 {
 .commit-link {
     font-size: 0.6rem;
     color: var(--text-muted);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     text-decoration: none;
 }
 
@@ -862,7 +899,7 @@ h2 {
 }
 
 .issue-icon {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.6rem;
     font-weight: 600;
     min-width: 1.25rem;
@@ -899,7 +936,7 @@ h2 {
 .issue-number {
     font-size: 0.6rem;
     color: var(--text-muted);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 /* Loading/Error States */
@@ -934,12 +971,65 @@ h2 {
 }
 
 @media (max-width: 768px) {
+    /* Mobile: sidebar becomes top bar */
+    body {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+
+    .nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        height: 100%;
+    }
+
+    .nav-logo {
+        margin-bottom: 0;
+    }
+
+    .nav-logo img {
+        height: 40px;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        gap: var(--spacing-xs);
+        width: auto;
+    }
+
+    .nav-links a {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.7rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--primary);
+        background: transparent;
+    }
+
     .intro-title {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .intro-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .intro-bio {
@@ -949,12 +1039,12 @@ h2 {
     }
 
     .intro-image img {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
     }
 
     h2 {
-        font-size: 1.25rem;
+        font-size: 0.9rem;
     }
 
     .labels-grid {
@@ -962,21 +1052,7 @@ h2 {
     }
 
     .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .nav-container {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-
-    .nav-links {
-        gap: var(--spacing-xs);
-    }
-
-    .nav-links a {
-        padding: 0.375rem 0.5rem;
-        font-size: 0.75rem;
+        grid-template-columns: 1fr 1fr;
     }
 
     .container {
@@ -984,15 +1060,15 @@ h2 {
     }
 
     .stat-label {
-        min-width: 100px;
-        font-size: 0.65rem;
+        min-width: 80px;
+        font-size: 0.6rem;
     }
 
     .project-header h1 {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
-    /* Mobile: sidebar becomes top nav */
+    /* Mobile: projects sidebar becomes top nav */
     .projects-layout {
         grid-template-columns: 1fr;
     }
@@ -1003,6 +1079,7 @@ h2 {
         height: auto;
         border-right: none;
         border-bottom: 1px solid var(--bg-card);
+        padding: var(--spacing-sm);
     }
 
     .project-tabs {
@@ -1023,7 +1100,7 @@ h2 {
     }
 
     .project-content {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
 
     .bio-header {
@@ -1033,7 +1110,11 @@ h2 {
     }
 
     .bio-image img {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .career-block p {
+        font-size: 0.95rem;
     }
 }
