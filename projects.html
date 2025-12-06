@@ -6,6 +6,7 @@
     <meta name="description" content="Hunter Cobbs - AI-Augmented Development Projects">
     <title>Projects | Hunter Cobbs</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <nav class="nav-bar">
@@ -20,14 +21,53 @@
         </div>
     </nav>
 
-    <main class="container">
-        <section class="projects-section">
+    <div class="projects-layout">
+        <aside class="projects-sidebar">
             <h2>Projects</h2>
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be rendered here by JavaScript -->
+            <nav class="project-tabs" id="projectTabs">
+                <!-- Tabs rendered by JavaScript -->
+            </nav>
+        </aside>
+
+        <main class="project-content" id="projectContent">
+            <section class="project-header">
+                <h1 id="projectTitle">Select a project</h1>
+                <p id="projectDescription" class="project-subtitle"></p>
+                <div id="projectTags" class="project-meta"></div>
+                <div id="projectLinks" class="project-header-links"></div>
+            </section>
+
+            <div class="project-dashboard">
+                <section class="project-readme">
+                    <h2>Documentation</h2>
+                    <div id="readmeContent" class="readme-body">
+                        <p class="empty-text">Select a project from the sidebar</p>
+                    </div>
+                </section>
+
+                <aside class="project-sidebar">
+                    <section class="sidebar-section">
+                        <h3>Contribution Breakdown</h3>
+                        <div id="contributionStats" class="stats-bars"></div>
+                    </section>
+
+                    <section class="sidebar-section">
+                        <h3>Recent Commits</h3>
+                        <div id="recentCommits" class="commits-list">
+                            <p class="empty-text">--</p>
+                        </div>
+                    </section>
+
+                    <section class="sidebar-section">
+                        <h3>Issues & PRs</h3>
+                        <div id="issuesList" class="issues-list">
+                            <p class="empty-text">--</p>
+                        </div>
+                    </section>
+                </aside>
             </div>
-        </section>
-    </main>
+        </main>
+    </div>
 
     <footer class="site-footer">
         <div class="container">
@@ -35,6 +75,7 @@
         </div>
     </footer>
 
+    <script src="js/projects-data.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
