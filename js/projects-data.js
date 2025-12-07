@@ -9,11 +9,11 @@ const projects = [
         github: "https://github.com/hcobbs/xoe",
         repo: "hcobbs/xoe",
         contributions: {
-            "CLASSIC": 1,
-            "CLASSIC-REVIEW": 0,
-            "LLM-ASSISTED": 14,
-            "LLM-ARCH": 23,
-            "LLM-REVIEW": 2,
+            "CLASSIC": 2,
+            "CLASSIC-REVIEW": 1,
+            "LLM-ASSISTED": 18,
+            "LLM-ARCH": 36,
+            "LLM-REVIEW": 3,
             "VIBE": 0
         },
         features: [
@@ -60,10 +60,10 @@ const projects = [
             "LLM-ASSISTED": 0,
             "LLM-ARCH": 1,
             "LLM-REVIEW": 2,
-            "VIBE": 9
+            "VIBE": 17
         },
         features: [
-            "Left sidebar navigation with responsive mobile layout",
+            "Top navigation with responsive mobile layout",
             "Dynamic GitHub integration for project READMEs and commits",
             "Security hardened with SRI, CSP headers, and XSS sanitization",
             "Developed entirely with Claude Code assistance"
