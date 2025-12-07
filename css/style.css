@@ -241,49 +241,38 @@ h3 {
     font-weight: 600;
 }
 
-/* Projects Layout - Sidebar + Content */
+/* Projects Layout - Top Nav + Content */
 .projects-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
+    display: flex;
+    flex-direction: column;
     min-height: calc(100vh - 120px);
 }
 
-.projects-sidebar {
+.projects-topnav {
     background: var(--bg-darker);
-    border-right: 1px solid var(--bg-card);
-    padding: var(--spacing-md);
-    position: sticky;
-    top: 60px;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-}
-
-.projects-sidebar h2 {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-xs);
     border-bottom: 1px solid var(--bg-card);
+    padding: var(--spacing-sm) var(--spacing-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .project-tabs {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
 }
 
 .project-tab {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.25rem;
-    padding: var(--spacing-sm);
+    gap: 0.125rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
     background: transparent;
     border: 1px solid transparent;
-    border-left: 3px solid transparent;
+    border-bottom: 2px solid transparent;
     cursor: pointer;
     text-align: left;
     transition: all 0.2s ease;
@@ -292,13 +281,13 @@ h3 {
 .project-tab:hover {
     background: var(--bg-card);
     border-color: var(--bg-card-hover);
-    border-left-color: var(--text-muted);
+    border-bottom-color: var(--text-muted);
 }
 
 .project-tab.active {
     background: var(--bg-card);
     border-color: var(--border-subtle);
-    border-left-color: var(--primary);
+    border-bottom-color: var(--primary);
 }
 
 .tab-name {
@@ -314,7 +303,7 @@ h3 {
 }
 
 .tab-lang {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
 }
 
@@ -905,10 +894,6 @@ h3 {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .projects-layout {
-        grid-template-columns: 200px 1fr;
-    }
-
     .project-dashboard {
         grid-template-columns: 1fr;
     }
@@ -1019,35 +1004,21 @@ h3 {
         font-size: 1.25rem;
     }
 
-    /* Mobile: projects sidebar becomes top nav */
-    .projects-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-sidebar {
-        position: relative;
-        top: 0;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--bg-card);
-        padding: var(--spacing-sm);
+    /* Mobile: compact project tabs */
+    .projects-topnav {
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 
     .project-tabs {
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: var(--spacing-xs);
     }
 
     .project-tab {
-        border-left: none;
-        border-bottom: 2px solid transparent;
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: var(--spacing-xs);
     }
 
-    .project-tab.active {
-        border-left-color: transparent;
-        border-bottom-color: var(--primary);
+    .tab-lang {
+        display: none;
     }
 
     .project-content {
