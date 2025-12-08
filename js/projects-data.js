@@ -45,6 +45,29 @@ const projects = [
             "Optional Feistel cipher encryption at rest",
             "Multi-pass secure wiping of freed memory"
         ]
+    },
+    {
+        id: "mako",
+        name: "Mako",
+        language: "Flutter (Dart)",
+        description: "Network traffic capture and monitoring app with native packet capture for macOS (libpcap) and iOS (VPN-based), plus real-time traffic analysis and anomaly detection.",
+        tags: ["Flutter", "Networking", "Mobile", "macOS", "iOS"],
+        github: "https://github.com/hcobbs/mako",
+        repo: "hcobbs/mako",
+        contributions: {
+            "CLASSIC": 0,
+            "CLASSIC-REVIEW": 0,
+            "LLM-ASSISTED": 0,
+            "LLM-ARCH": 0,
+            "LLM-REVIEW": 0,
+            "VIBE": 20
+        },
+        features: [
+            "Native packet capture via libpcap FFI on macOS",
+            "VPN-based packet capture on iOS",
+            "Real-time data rate visualization",
+            "Traffic pattern analysis and anomaly detection"
+        ]
     }
 ];
 
