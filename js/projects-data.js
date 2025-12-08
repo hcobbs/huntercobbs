@@ -50,8 +50,8 @@ const projects = [
         id: "mako",
         name: "Mako",
         language: "Flutter (Dart)",
-        description: "Network traffic capture and monitoring app with native packet capture for Android and iOS (VPN-based), plus real-time traffic analysis and anomaly detection.",
-        tags: ["Flutter", "Networking", "Mobile", "Android", "iOS"],
+        description: "Mobile network monitoring app providing transparency into device network activity. Answers the question: what data are your apps actually transmitting?",
+        tags: ["Flutter", "Networking", "Mobile", "Android", "iOS", "GPLv3"],
         github: "https://github.com/hcobbs/mako",
         repo: "hcobbs/mako",
         contributions: {
@@ -63,10 +63,10 @@ const projects = [
             "VIBE": 19
         },
         features: [
-            "Native packet capture on Android, VPN-based on iOS",
-            "Real-time data rate visualization",
-            "Traffic pattern analysis and anomaly detection",
-            "Configurable rules to flag suspicious network patterns"
+            "Packet capture via libpcap FFI (Android) and VPN tunnel (iOS)",
+            "Real-time bandwidth visualization per application",
+            "Protocol identification and server destination tracking",
+            "Rule-based anomaly detection for suspicious network behavior"
         ]
     }
 ];
