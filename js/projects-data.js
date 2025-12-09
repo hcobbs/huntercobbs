@@ -27,23 +27,23 @@ const projects = [
         id: "rampart",
         name: "RAMpart",
         language: "ANSI-C (C89)",
-        description: "Secure memory pool management library with guard bands, thread ownership enforcement, encryption at rest, and leak detection.",
-        tags: ["C89", "Security", "Memory Management"],
+        description: "Secure memory pool management library with guard bands, thread ownership enforcement, and leak detection. Underwent comprehensive red-team security audit with all 17 identified vulnerabilities remediated.",
+        tags: ["C89", "Security", "Memory Management", "Audited"],
         github: "https://github.com/hcobbs/RAMpart",
         repo: "hcobbs/RAMpart",
         contributions: {
             "CLASSIC": 0,
             "CLASSIC-REVIEW": 0,
             "LLM-ASSISTED": 0,
-            "LLM-ARCH": 4,
-            "LLM-REVIEW": 4,
+            "LLM-ARCH": 17,
+            "LLM-REVIEW": 8,
             "VIBE": 0
         },
         features: [
-            "Guard bands for buffer overflow/underflow detection",
-            "Thread-based memory access control",
-            "Optional Feistel cipher encryption at rest",
-            "Multi-pass secure wiping of freed memory"
+            "Randomized guard bands with constant-time validation",
+            "Thread ownership enforcement with canary protection",
+            "Multi-pass secure wiping with random final pass",
+            "Defense-in-depth: pool validation, safe unlinking, reentrancy protection"
         ]
     },
     {
