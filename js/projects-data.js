@@ -65,8 +65,11 @@ const projects = [
         ],
         reviews: {
             security: {
-                status: "none",
-                rounds: []
+                status: "ongoing",
+                baseUrl: "https://github.com/hcobbs/xoe/tree/main/redteam_reports",
+                rounds: [
+                    { date: "2025-12-24", severity: "critical", folder: "2025-12-24" }
+                ]
             },
             codeReview: {
                 status: "none",
