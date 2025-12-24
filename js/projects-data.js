@@ -1,6 +1,29 @@
 /* Project Data - shared across pages */
 const projects = [
     {
+        id: "stutter",
+        name: "Stutter",
+        language: "ANSI-C (C89)",
+        description: "Fortuna-based cryptographically secure PRNG library with 32-pool entropy accumulation, AES-256-CTR generation, and thread-safe design. Underwent red-team security audit.",
+        tags: ["C89", "Cryptography", "Security", "CSPRNG", "Audited"],
+        github: "https://github.com/hcobbs/stutter",
+        repo: "hcobbs/stutter",
+        contributions: {
+            "CLASSIC": 0,
+            "CLASSIC-REVIEW": 0,
+            "LLM-ASSISTED": 0,
+            "LLM-ARCH": 3,
+            "LLM-REVIEW": 0,
+            "VIBE": 0
+        },
+        features: [
+            "32-pool entropy accumulation with scheduled reseeding",
+            "AES-256-CTR generation compatible with NIST standards",
+            "Thread-safe design with hierarchical locking and TLS generators",
+            "Backtrack and prediction resistance via one-way hashing"
+        ]
+    },
+    {
         id: "xoe",
         name: "XoE (X over Ethernet)",
         language: "ANSI-C (C89)",
@@ -67,6 +90,29 @@ const projects = [
             "Real-time bandwidth visualization per application",
             "Protocol identification and server destination tracking",
             "Rule-based anomaly detection for suspicious network behavior"
+        ]
+    },
+    {
+        id: "coral_greif",
+        name: "Coral Greif",
+        language: "Swift (iOS)",
+        description: "WWII Pacific theater tactical naval warfare game. Turn-based Battleship-style combat with historical ship names, no RNG mechanics, and zero ads or microtransactions.",
+        tags: ["Swift", "iOS", "SpriteKit", "Game", "GPLv3"],
+        github: "https://github.com/hcobbs/coral_greif",
+        repo: "hcobbs/coral_greif",
+        contributions: {
+            "CLASSIC": 0,
+            "CLASSIC-REVIEW": 0,
+            "LLM-ASSISTED": 0,
+            "LLM-ARCH": 10,
+            "LLM-REVIEW": 0,
+            "VIBE": 2
+        },
+        features: [
+            "Multiple AI difficulty levels with strategic opponents",
+            "20-second turn timer for tactical pressure",
+            "Deterministic gameplay with no randomness",
+            "Player profiles with battle statistics tracking"
         ]
     }
 ];
