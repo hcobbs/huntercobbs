@@ -21,7 +21,25 @@ const projects = [
             "AES-256-CTR generation compatible with NIST standards",
             "Thread-safe design with hierarchical locking and TLS generators",
             "Backtrack and prediction resistance via one-way hashing"
-        ]
+        ],
+        reviews: {
+            security: {
+                status: "ongoing",
+                baseUrl: "https://github.com/hcobbs/stutter/tree/main/redteam_reports",
+                rounds: [
+                    { date: "2025-12-24", severity: "critical", folder: "2025-12-24" },
+                    { date: "2025-12-24", severity: "critical", folder: "2025-12-24_review" },
+                    { date: "2025-12-24", severity: "medium", folder: "2025-12-24_regression" },
+                    { date: "2025-12-24", severity: "low", folder: "2025-12-24_regression_2" },
+                    { date: "2025-12-24", severity: "low", folder: "2025-12-24_review_2" },
+                    { date: "2025-12-24", severity: "low", folder: "2025-12-24_deep_review" }
+                ]
+            },
+            codeReview: {
+                status: "none",
+                rounds: []
+            }
+        }
     },
     {
         id: "xoe",
@@ -44,7 +62,17 @@ const projects = [
             "Runtime encryption selection (none, TLS 1.2, TLS 1.3)",
             "Cross-platform POSIX support (Linux, macOS, BSD)",
             "Strict C89 compliance with pedantic warnings"
-        ]
+        ],
+        reviews: {
+            security: {
+                status: "none",
+                rounds: []
+            },
+            codeReview: {
+                status: "none",
+                rounds: []
+            }
+        }
     },
     {
         id: "rampart",
@@ -67,7 +95,21 @@ const projects = [
             "Thread ownership enforcement with canary protection",
             "Multi-pass secure wiping with random final pass",
             "Defense-in-depth: pool validation, safe unlinking, reentrancy protection"
-        ]
+        ],
+        reviews: {
+            security: {
+                status: "ongoing",
+                baseUrl: "https://github.com/hcobbs/RAMpart/tree/main/redteam_reports",
+                rounds: [
+                    { date: "2025-12-23", severity: "critical", folder: "2025-12-23" },
+                    { date: "2025-12-23", severity: "medium", folder: "2025-12-23_2" }
+                ]
+            },
+            codeReview: {
+                status: "none",
+                rounds: []
+            }
+        }
     },
     {
         id: "mako",
@@ -90,7 +132,17 @@ const projects = [
             "Real-time bandwidth visualization per application",
             "Protocol identification and server destination tracking",
             "Rule-based anomaly detection for suspicious network behavior"
-        ]
+        ],
+        reviews: {
+            security: {
+                status: "none",
+                rounds: []
+            },
+            codeReview: {
+                status: "none",
+                rounds: []
+            }
+        }
     },
     {
         id: "coral_greif",
@@ -113,7 +165,17 @@ const projects = [
             "20-second turn timer for tactical pressure",
             "Deterministic gameplay with no randomness",
             "Player profiles with battle statistics tracking"
-        ]
+        ],
+        reviews: {
+            security: {
+                status: "none",
+                rounds: []
+            },
+            codeReview: {
+                status: "none",
+                rounds: []
+            }
+        }
     }
 ];
 
