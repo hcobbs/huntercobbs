@@ -67,6 +67,7 @@ function selectProject(projectId) {
     /* Render static content */
     renderProjectHeader(project);
     renderContributionStats(project);
+    renderReviewStatus(project);
 
     /* Fetch GitHub data */
     fetchAndRenderReadme(project.repo);
@@ -109,6 +110,58 @@ function renderContributionStats(project) {
                         <div class="stat-fill ${cls}" style="width: ${pct}%"></div>
                     </div>
                     <span class="stat-value">${count}</span>
+                </div>
+            `;
+        }
+    }
+
+    container.innerHTML = html;
+}
+
+/* Render review status badges */
+function renderReviewStatus(project) {
+    const container = document.getElementById('reviewStatus');
+    if (!container || !project.reviews) {
+        if (container) {
+            container.innerHTML = '<p class="review-none">No reviews</p>';
+        }
+        return;
+    }
+
+    let html = '';
+    const reviewTypes = [
+        { key: 'security', label: 'Security Audit' },
+        { key: 'codeReview', label: 'Code Review' }
+    ];
+
+    for (const type of reviewTypes) {
+        const review = project.reviews[type.key];
+        if (!review || review.status === 'none' || review.rounds.length === 0) {
+            html += `
+                <div class="review-row">
+                    <span class="review-label">${type.label}:</span>
+                    <span class="review-none">None</span>
+                </div>
+            `;
+        } else {
+            const labelHtml = review.baseUrl
+                ? `<a href="${escapeHtml(review.baseUrl)}" target="_blank" rel="noopener noreferrer">${type.label}:</a>`
+                : `${type.label}:`;
+
+            const badgesHtml = review.rounds.map((round, idx) => {
+                const url = review.baseUrl ? `${review.baseUrl}/${round.folder}` : '#';
+                const title = `Round ${idx + 1}: ${round.date} (${round.severity})`;
+                return `<a href="${escapeHtml(url)}"
+                           class="review-badge severity-${round.severity}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="${escapeHtml(title)}">${idx + 1}</a>`;
+            }).join('');
+
+            html += `
+                <div class="review-row">
+                    <span class="review-label">${labelHtml}</span>
+                    <div class="review-rounds">${badgesHtml}</div>
                 </div>
             `;
         }

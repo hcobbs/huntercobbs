@@ -1002,3 +1002,94 @@ h3 {
         font-size: 0.95rem;
     }
 }
+
+/* Review Status Badges */
+.review-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.review-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.review-label {
+    font-size: 0.7rem;
+    font-family: 'Fira Code', monospace;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+}
+
+.review-label a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.review-label a:hover {
+    color: var(--primary);
+}
+
+.review-rounds {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.review-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.review-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Severity colors */
+.review-badge.severity-critical {
+    background: #cc4444;
+    color: #fff;
+}
+
+.review-badge.severity-high {
+    background: #d48a3c;
+    color: #1a1a1a;
+}
+
+.review-badge.severity-medium {
+    background: #c9b44a;
+    color: #1a1a1a;
+}
+
+.review-badge.severity-low {
+    background: #7a9e7a;
+    color: #1a1a1a;
+}
+
+.review-badge.severity-none {
+    background: var(--text-muted);
+    color: var(--bg-dark);
+}
+
+.review-none {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
