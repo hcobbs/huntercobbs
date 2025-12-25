@@ -72,8 +72,11 @@ const projects = [
                 ]
             },
             codeReview: {
-                status: "none",
-                rounds: []
+                status: "ongoing",
+                baseUrl: "https://github.com/hcobbs/xoe/tree/main/redteam_reports",
+                rounds: [
+                    { date: "2025-12-24", severity: "medium", folder: "2025-12-24_review" }
+                ]
             }
         }
     },
@@ -109,8 +112,11 @@ const projects = [
                 ]
             },
             codeReview: {
-                status: "none",
-                rounds: []
+                status: "ongoing",
+                baseUrl: "https://github.com/hcobbs/RAMpart/tree/main/redteam_reports",
+                rounds: [
+                    { date: "2025-12-24", severity: "low", folder: "2025-12-24_review" }
+                ]
             }
         }
     },
